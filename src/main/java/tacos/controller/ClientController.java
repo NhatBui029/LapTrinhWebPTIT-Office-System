@@ -1,5 +1,6 @@
 package tacos.controller;
 
+import java.net.http.HttpResponse;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -17,14 +18,23 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import tacos.entity.Office;
+import tacos.service.IContractService;
+import tacos.service.IDanhSachService;
 import tacos.service.IOfficeService;
 import tacos.entity.Contract;
+import tacos.entity.DanhSach;
 
 @Controller
 @RequestMapping("/client")
 public class ClientController {
 	@Autowired
 	private IOfficeService iOffSer;
+	
+	@Autowired 
+	IContractService iCtrSer;
+	
+	@Autowired
+	IDanhSachService iDSSer;
 
 	@GetMapping("/home")
 	public String home(Model model, HttpServletRequest request) {
@@ -122,7 +132,7 @@ public class ClientController {
 		return "client/detail";
 	}
 	@PostMapping("/require/{id}")
-	public String require(@PathVariable String id,Model model,HttpServletRequest request) {
+	public String require(@PathVariable String id,Model model,HttpServletRequest request,HttpServletResponse response) {
 		String  payment = request.getParameter("payment");
 		int deposits = Integer.parseInt(request.getParameter("deposits"));
 		String dateStart = request.getParameter("start-date");
@@ -146,12 +156,24 @@ public class ClientController {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		String dateSign = currentDate.format(formatter);
 
-		String term = "Các điều khoản cụ thể có thể thay đổi tùy thuộc "
-				+ "vào thỏa thuận giữa hai bên và quy định pháp luật địa phương";
+		String term = "Điều khoản";
 		
-		Contract contract = new Contract(idContract, id, idCus, deposits, dateSign, dateStart, dateEnd, payment, term);
-		System.out.println(contract);
+		Contract ctr = new Contract(idContract, id, idCus, deposits, dateSign, dateStart, dateEnd, payment, term);
+		String check = ctr.toCheck();
 		
+		Office off = iOffSer.getOfficeById(id);
+		off.setStatus("check");
+		iOffSer.saveOffice(off);
+		
+		DanhSach require = iDSSer.getDanhSachByOffice(id);
+		if(require == null) {
+			DanhSach ds = new DanhSach(id,check);
+			iDSSer.saveDanhSach(ds);
+		}else {
+			String input = require.getList()+"|"+check;
+			DanhSach ds = new DanhSach(id,input);
+			iDSSer.saveDanhSach(ds);
+		}
 		
 		model.addAttribute("office", iOffSer.getOfficeById(id));
 		return "client/detail";

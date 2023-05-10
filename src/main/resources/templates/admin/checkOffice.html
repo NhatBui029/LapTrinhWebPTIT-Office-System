@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/admin/layouts/layoutOffice.html}">
+
+<body>
+	<div layout:fragment="content" style="overflow-x: auto;">
+		<form method="POST" action="/admin/office/filter">
+			<div style="text-align: center;">
+				<h2>Danh Sách Yêu cầu thuê văn phòng </h2>
+
+				<table class="table mt-4">
+					<thead>
+						<tr>
+							<th scope="col">Mã VP</th>
+							<th scope="col">Mã KH</th>
+							<th scope="col">Tiền cọc</th>
+							<th scope="col">Ngày kí</th>
+							<th scope="col">Ngày bắt đầu</th>
+							<th scope="col">Ngày kết thúc</th>
+							<th scope="col">Thanh toán</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contract :${contracts}">
+							<td th:text="${contract.idOffice}"></td>
+							<td th:text="${contract.idCustomer}"></td>
+							<td th:text="${contract.deposits}"></td>
+							<td th:text="${contract.dateSign }"></td>
+							<td th:text="${contract.dateStart}"></td>
+							<td th:text="${contract.dateEnd}"></td>
+							<td th:text="${contract.payment}"></td>
+							<td>
+								<a th:href="@{/admin/office/check/confirm/{id}(id=${contract.id})}" class="btn btn-primary">Chấp nhận</a>
+							</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+		</form>
+
+
+		<form name="form-delete" method="post"></form>
+
+	</div>
+</body>
+
+
+</html>

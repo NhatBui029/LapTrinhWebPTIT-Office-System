@@ -84,10 +84,10 @@
 						<td th:text="${office.priceService}"></td>
 						<td th:text="${office.priceCar}"></td>
 						<td th:text="${office.priceMotobike}"></td>
-						<td th:switch="${office.status}">
+						<td th:switch="${office.status}"  >
 							<p th:case="still">Còn</p>
 							<a th:case="hired" href="#" class="btn btn-secondary">Đã thuê</a>
-							<a th:case="check" href="#" class="btn btn-info">Phê duyệt</a>
+							<a th:case="check" th:href="@{/admin/office/check/{id}(id=${office.idOffice})}" class="btn btn-info">Phê duyệt</a>
 						</td>
 						<td>
 							<a th:href="@{/admin/office/edit/{id}(id=${office.idOffice})}" class="btn btn-primary">Sửa</a>
@@ -122,6 +122,7 @@
 				</div>
 			</div>
 		</div>
+		
 
 		<form name="form-delete" method="post"></form>
 

@@ -45,6 +45,8 @@ public class Office {
 	
 	private String deleted;
 	
+	
+	
 	public Office() {
 		this.status = "still";
 		this.deleted = "false";
@@ -74,7 +76,9 @@ public class Office {
 		this.status = "still";
 	}
 
-	
+
+
+
 	public String getDeleted() {
 		return deleted;
 	}

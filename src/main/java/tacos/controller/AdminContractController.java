@@ -23,6 +23,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import tacos.entity.Customer;
 import tacos.entity.Office;
+import tacos.service.IContractService;
 import tacos.service.ICustomerService;
 import tacos.service.IOfficeService;
 
@@ -33,10 +34,13 @@ public class AdminContractController {
 	private IOfficeService iOffSer;
 	@Autowired
 	private ICustomerService iCusSer;
+	@Autowired 
+	IContractService iCtrSer;
 
 	@GetMapping("")
 	public String homeOffice(Model model) {
-		model.addAttribute("contracts", iOffSer.getAllOffice());
+		System.out.println(iCtrSer.getAllContract());
+		model.addAttribute("contracts",iCtrSer.getAllContract());
 		return "admin/contract";
 	}
 

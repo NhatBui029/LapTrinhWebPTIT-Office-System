@@ -13,6 +13,9 @@
 	flex: 2;
 }
 
+.content-office .filter h1{
+	text-align: left;
+}
 .content-office .filter .select{
 	width: 295px;
 	height: 48px;

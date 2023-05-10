@@ -126,4 +126,8 @@ public class Contract {
 				+ payment + ", term=" + term + "]";
 	}
 
+	public String toCheck() {
+		return id+'/'+idOffice+'/'+idCustomer+'/'+deposits+'/'+dateSign+'/'+dateStart+'/'+dateEnd+'/'+payment+'/'+term;
+	}
+
 }
