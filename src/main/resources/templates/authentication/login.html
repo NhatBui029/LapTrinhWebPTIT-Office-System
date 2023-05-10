@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Login</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}" />
+
+
+</head>
+
+<body>
+	<div class="container">
+		<form class="form" action="/auth/login" method="post" th:object="${admin}">
+			<div class="header">Login</div>
+			<div class="inputs">
+				<input placeholder="Tài khoản" class="input" type="text" th:field="*{user}">
+				<div th:if="${errorUser}">
+					<span th:text="${errorUser}" style="color: red;margin-left: 10px;"></span>
+				</div>
+				<input placeholder="Mật khẩu" class="input" type="password" th:field="*{password}">
+				<div th:if="${errorPassword}">
+					<span th:text="${errorPassword}" style="color: red;margin-left: 10px;"></span>
+				</div>
+				<div class="checkbox-container">
+					<label class="checkbox">
+						<input type="checkbox" id="checkbox">
+					</label>
+					<label for="checkbox" class="checkbox-text">Remember me</label>
+				</div>
+				<button class="sigin-btn">Submit</button>
+				<a class="forget" href="#">Forget password ?</a>
+				<p class="signup-link">Don't have an account? <a href="/auth/register">Register</a></p>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

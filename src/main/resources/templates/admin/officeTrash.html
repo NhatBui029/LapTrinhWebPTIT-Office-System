@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/admin/layouts/layoutOffice.html}">
+
+<body>
+	<div layout:fragment="content" style="overflow-x: auto;">
+		<form method="POST" action="/admin/office/action">
+			<div style="display: flex; justify-content: center;">
+				<h2>Thùng rác Văn Phòng</h2>
+			</div>
+			
+			<div  th:if="${count}" style="display: flex; justify-content: center;">
+				<a href="/admin/office" th:text="|Danh sách(${count})|"></a>
+			</div>
+			
+			<div class="mt-4 d-flex">
+				<div class="form-check ">
+					<input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+					<label class="form-check-label" for="checkbox-all">Chọn tất cả</label>
+				</div>
+			</div>
+
+			<table class="table mt-4">
+				<thead>
+					<tr>
+						<th scope="col">Chọn</th>
+						<!--<th scope="col">#</th>-->
+						<th scope="col">Mã</th>
+						<th scope="col">Tòa nhà</th>
+						<th scope="col">Địa chỉ</th>
+						<th scope="col">Phân phúc</th>
+						<th scope="col">Diện tích</th>
+						<th scope="col">Chiều cao</th>
+						<th scope="col">Giá thuê</th>
+						<th scope="col">Giá dịch vụ</th>
+						<th scope="col">Giá đậu ô tô</th>
+						<th scope="col">Giá đậu xe máy</th>
+						<th scope="col">Trạng thái</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="office :${offices}">
+						<td>
+							<div class="form-check ">
+								<input class="form-check-input" type="checkbox" th:value="${office.idOffice}" name="ids">
+							</div>
+						</td>
+						<!--<th scope="row">{{sum @index 1}}</th>-->
+						<td th:text="${office.idOffice}"></td>
+						<td th:text="${office.location}"></td>
+						<td th:text="${office.address}"></td>
+						<td th:text="|Hạng ${office.level}|"></td>
+						<td th:text="${office.area}"></td>
+						<td th:text="${office.height}"></td>
+						<td th:text="${office.priceOffice}"></td>
+						<td th:text="${office.priceService}"></td>
+						<td th:text="${office.priceCar}"></td>
+						<td th:text="${office.priceMotobike}"></td>
+						<td th:switch="${office.status}">
+							<p th:case="still">Còn</p>
+							<a th:case="hired" href="#" class="btn btn-secondary" >Đã thuê</a>
+							<a th:case="check" href="#" class="btn btn-info" >Phê duyệt</a>
+						</td>
+						<td>
+							<a th:href="@{/admin/office/restore/{id}(id=${office.idOffice})}" class="btn btn-primary" >Khôi phục</a>
+							<a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete"
+								th:data-id="${office.idOffice}">Xóa vĩnh viễn</a>
+						</td>
+					</tr>
+<!--					<tr th:if="${countCustomer} == 0">
+						<td colspan="7" class="text-center">Bạn chưa đăng bán xe nào
+							<a href="/car/create">Tạo đơn bán</a>
+						</td>
+					</tr>-->
+				</tbody>
+			</table>
+
+			<div class="d-flex">
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="action" required>
+					<option selected value="">Chọn chức năng</option>
+					<option value="destroy">Xóa vĩnh viễn</option>
+					<option value="restore">Khôi phục</option>
+				</select>
+				<button class="btn btn-primary disabled" id="submit-btn" type="submit" >Thực hiện</button>
+			</div>
+		</form>
+
+
+
+		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Bạn chắc chắn muốn thực hiện hành động này?</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="btn-destroy">Xóa</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form name="form-delete" method="post"></form>
+
+	</div>
+</body>
+	
+
+</html>

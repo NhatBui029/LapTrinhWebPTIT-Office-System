@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/client/layouts/office.html}">
+
+<body>
+	<div layout:fragment="content" class="content-office">
+		<div class="filter">
+			<h1>TÌM VĂN PHÒNG</h1>
+			<form class="form-group" action="/client/filter" method="post">
+				<select name="level" class="select">
+					<option value="">Phân khúc</option>
+					<option value="a">Hạng A</option>
+					<option value="b">Hạng B</option>
+					<option value="c">Hạng C</option>
+					<option value="d">Hạng D</option>
+				</select>
+
+				<select name="price" class="select">
+					<option value="0">Mức giá</option>
+					<option value="10">1-10 $</option>
+					<option value="20">11-20 $</option>
+					<option value="30">21-30 $</option>
+					<option value="40">31-40 $</option>
+					<option value="50">41-50 $</option>
+					<option value="51">> 50 $</option>
+				</select>
+				
+				<select name="area" class="select">
+					<option value="0">Diện tích</option>
+					<option value="200">< 200 m2</option>
+					<option value="500">200 - 500 m2 </option>
+					<option value="1000">500 - 1000 m2</option>
+					<option value="2000">1000 - 2000 m2</option>
+					<option value="2001">> 2000 m2</option>
+				</select>
+
+				<input type="submit" value="Lọc" class="select btn-filter">
+			</form>
+		</div>
+
+		<div class="main">
+			<form method="post" action="/client/search">
+				<input type="text" placeholder="Search buildings, streets or address" name="input">
+				<button class="normal" type="submit">Tìm kiếm</button>
+			</form>
+
+			<div class="office-list">
+				<div class="office-item" th:each="office :${offices}">
+					<img
+						th:src="@{https://timvanphong.com.vn/wp-content/uploads/__${office.image}__.jpg}"
+						onerror="this.src='https://timvanphong.com.vn/wp-content/uploads/2021/02/vinhome-sky-lake-pham-hung.jpg';">
+					<div class="office-item-text">
+						<h3 th:text="${office.location}"></h3>
+						<div class="level">
+							<i class="bi bi-building-fill"></i>
+							<span th:text="|Hạng ${office.level}|"></span><br>
+						</div>
+						<div class="address">
+							<i class="bi bi-geo-alt-fill"></i>
+							<span th:text="${office.address}"></span>
+						</div>
+						<a th:href="@{/client/office/detail/{id}(id=${office.idOffice})}">
+							<p class="price">Từ <span style="font-weight: 700;font-size: 24px;"
+									th:text="${office.priceOffice}"></span>
+								<i class="bi bi-currency-dollar" style="font-weight: 700;"></i>/m2
+							</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

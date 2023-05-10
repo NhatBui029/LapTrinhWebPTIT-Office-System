@@ -1,0 +1,192 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+.detail {
+	display: flex;
+	justify-content: center;
+	
+}
+
+.detail .right_1 {
+	width: calc(100%/3);
+	background-color: #2e2b4a;
+	color: #fff;
+	padding: 20px 30px;
+}
+
+.detail img {
+	width: calc(100%/3);
+	height: auto;
+}
+
+
+
+.right_header {
+	float: right;
+}
+
+.right_header h1 {
+	color: #f7a306;
+	font-size: 32px;
+}
+
+.right_header span {
+	margin-top: 10px;
+	float: right;
+	font-size: 18px;
+	margin-bottom: 50px;
+}
+
+.right_body {
+	display: inline-block;
+	text-align: justify;
+	margin-top: 25px;
+	font-size: 17px;
+	line-height: 21px;
+}
+
+.left {
+	width: calc(100%/3);
+	background-color: #f4f8f9;
+	padding-left: 40px;
+}
+
+.left_header {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	cursor: pointer;
+}
+
+.left_header-structure {
+	width: 50%;
+	text-align: center;
+	position: relative;
+	background-color: #be4369;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	color: white;
+	margin-right: 5px;
+}
+
+.left_header-structure .icon_down {
+	position: absolute;
+	bottom: -10px;
+	font-size: 32px;
+	color: #be4369;
+}
+.left .price{
+	background-color: #f7a306;
+	color: #fff;
+	margin: 16px 0;
+	border-radius: 4px;
+}
+
+.left .price p{
+	font-weight: 700;
+	font-size: 24px;
+	padding: 8px 0;
+}
+.left_header-details {
+	width: 50%;
+	text-align: center;
+	margin-left: 5px;
+	background-color: #d5d7e4;
+	border-bottom: 1px solid #adb1cc;
+	height: 50px;
+	line-height: 50px;
+	color: black;
+}
+
+
+
+table.blueTable {
+	background-color: #f4f8f9;
+	width: 100%;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+table.blueTable td,
+table.blueTable th {
+	padding: 10px;
+}
+
+table.blueTable tbody td {
+	font-size: 16px;
+	width: 50%;
+}
+
+table.blueTable tr:nth-child(even) {
+	background: #e0ebf6;
+}
+
+table.blueTable tfoot td {
+	font-size: 16px;
+}
+
+table.blueTable tfoot .links {
+	text-align: right;
+}
+table .bi{
+	margin-right: 20px;
+}
+table.blueTable tfoot .links a {
+	display: inline-block;
+	background: white;
+	color: #FFFFFF;
+	padding: 2px 8px;
+	border-radius: 5px;
+}
+
+i.fas.fa-building,
+i.fas.fa-map-marker-alt {
+	margin-right: 20px;
+}
+
+.left_footer {
+	display: flex;
+	margin-top: 20px;
+}
+
+.left_footer button {
+	cursor: pointer;
+}
+
+.left_footer button:active {
+	transform: translateY(5px);
+	transition: .5s;
+}
+
+.left_footer button:nth-child(2) {
+	background-color: #413F5B;
+	width: 50%;
+	color: white;
+	border: none;
+	margin-right: 5px;
+	height: 40px;
+	font-size: 16px;
+	border-radius: 5px;
+}
+.left_footer a{
+	color: #fff;
+}
+.left_footer button:nth-child(1) {
+	width: 50%;
+	background-color: #be4369;
+	color: white;
+	font-size: 16px;
+	border: none;
+	margin-right: 5px;
+	height: 40px;
+	border-radius: 5px;
+}
+
+.left_footer button .icon_btn {
+	margin-right: 5px;
+}

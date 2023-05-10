@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/client/layouts/home.html}">
+
+<body>
+	<div layout:fragment="content">
+		<h2>VĂN PHÒNG CHO THUÊ <span class="text-orange">CAO CẤP</span></h2>
+		<p>Sunoffice mang tới hàng nghìn không gian văn phòng cho thuê tại các tòa nhà hạng
+			A, B, C, D... trên địa bàn Hà Nội</p>
+		<div class="office-list" >
+			<div class="office-item" th:each="office :${offices}">
+				<img
+					th:src="@{https://timvanphong.com.vn/wp-content/uploads/__${office.image}__.jpg}"
+					onerror="this.src='https://timvanphong.com.vn/wp-content/uploads/2021/02/vinhome-sky-lake-pham-hung.jpg';">
+				<div class="office-item-text">
+					<h3 th:text="${office.location}"></h3>
+					<div class="level">
+						<i class="bi bi-building-fill"></i>
+						<span th:text="|Hạng ${office.level}|"></span><br>
+					</div>
+					<div class="address">
+						<i class="bi bi-geo-alt-fill"></i>
+						<span th:text="${office.address}"></span>
+					</div>
+					<a th:href="@{/client/office/detail/{id}(id=${office.idOffice})}">
+						<p class="price">Từ <span style="font-weight: 700;font-size: 24px;"
+								th:text="${office.priceOffice}"></span>
+							<i class="bi bi-currency-dollar" style="font-weight: 700;"></i>/m2
+						</p>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

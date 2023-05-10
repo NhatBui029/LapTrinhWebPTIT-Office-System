@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/admin/layouts/layoutCustomer.html}">
+
+<body>
+	<div layout:fragment="content">
+		<form class="add" method="post" th:object="${office}" action="/admin/office/edit">
+			<div class="inputGroup">
+				<input type="text"  autocomplete="off" th:field="*{idOffice}">
+				<label for="name">Mã Vp</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text"  autocomplete="off" th:field="*{location}">
+				<label for="name">Tòa nhà</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text"  autocomplete="off" th:field="*{address}">
+				<label for="name">Địa chỉ</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{timeWork}">
+				<label for="name">Thời gian làm việc</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{image}">
+				<label for="name">Hình ảnh</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{area}" >
+				<label for="name">Diện tích(m2)</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{height}">
+				<label for="name">Chiều cao trần(m)</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{priceOfficeMin}">
+				<label for="name">Giá tối thiểu($)</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{priceOfficeMax}">
+				<label for="name">Giá tối đa($)</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{priceService}">
+				<label for="name">Giá dịch vụ ($/m2)</label>
+			</div>
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{priceCar}">
+				<label for="name">Giá gửi ô tô(tr/xe/tháng)</label>
+			</div>
+			
+			<div class="inputGroup">
+				<input type="text" required="" autocomplete="off" th:field="*{priceMotobike}">
+				<label for="name">Giá gửi xe máy(tr/xe/tháng)</label>
+			</div>
+			
+
+			<select class="form-select form-select-sm select" aria-label=".form-select-sm example"
+				style="margin-right:  16px;" th:field="*{level}">
+				<option selected value="">Phân khúc</option>
+				<option value="A">Hạng A</option>
+				<option value="B">Hạng B</option>
+				<option value="C">Hạng C</option>
+				<option value="D">Hạng D</option>
+			</select>
+			<div class="inputGroup" style="width: 50%;">
+				<input type="text" required="" autocomplete="off" th:field="*{about}">
+				<label for="name">Thông tin</label>
+			</div>
+			<input type="submit" value="Sửa" class="select btn-filter">
+
+		</form>
+
+
+	</div>
+</body>
+
+
+</html>

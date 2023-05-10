@@ -1,0 +1,121 @@
+.content-office{
+	display: flex;
+	padding: 24px 140px;
+	background:  url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_1.jpg) 
+	left bottom no-repeat, 
+	url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_2.jpg) 
+	right bottom no-repeat #f4f8f9;
+}
+.content-office .filter{
+	flex: 1;
+}
+.content-office .main{
+	flex: 2;
+}
+
+.content-office .filter .select{
+	width: 295px;
+	height: 48px;
+	padding: 6px 12px;
+	margin-top: 24px;
+	font-size: 16px;
+	line-height: 1.5;
+}
+
+.content-office .filter .btn-filter{
+	background-color: #2E2B4A;
+	border: none;
+	color: #fff;
+}
+
+.content-office .filter .btn-filter:hover{
+	opacity: 0.9;
+}
+
+.main input {
+    height: 3.125rem;
+    padding: 0 1.25em;
+    font-size: 14px;
+    width: 84%;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    outline: none;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.main button {
+    background-color:#2E2B4A;
+    color: #fff;
+    white-space: nowrap;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.main .normal {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 15px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    transition: 0.2s;
+}
+
+.main .normal:hover{
+	opacity: 0.9;
+}
+
+.main .office-list{
+	margin-top: 48px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.office-list .office-item{
+	width: 49%;
+	display: flex;
+	height: 278px;
+	border-radius: 5px;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,.1);
+    margin-bottom: 24px;
+}
+
+.office-item >img{
+	width: 50%;
+}
+.office-item .office-item-text{
+	width: 50%;	
+    background-color: #fff;    
+	text-align: left;
+	position: relative;
+}
+.office-item-text  h3{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.office-item-text .level{
+	margin-left: 20px;
+	font-size: 14px;
+	font-weight: 400;
+	margin-top:24px;
+}
+.office-item-text .address{
+	margin: 10px 20px 0 20px;
+	font-size: 14px;
+	font-weight: 400;
+}
+.office-item-text .price{
+	text-align: center;
+	width: 100%;
+	padding: 10px 0;
+	background-color: #f6f6fc;
+	transition: all 300ms ease-in-out;
+	position: absolute;
+	bottom: 35px;
+}
+.office-item-text .price:hover{
+	color: #fff;
+	background-color: #f7a306;
+}

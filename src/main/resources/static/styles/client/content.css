@@ -1,0 +1,73 @@
+.content > h2{
+	font-weight: 500;
+	position: relative;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.content > h2::before{
+	content: "";
+    height: 2px;
+    width: 120px;
+    position: absolute;
+    bottom: 0;
+    display: block;
+    background: #f7a306;
+    color: #2d314c;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.content .office-list{
+	margin-top: 48px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+
+.office-list .office-item{
+	width: 32%;
+	display: flex;
+	height: 278px;
+	border-radius: 5px;
+    box-shadow: 0px 0px 30px 0px rgba(0,0,0,.1);
+    margin-bottom: 24px;
+}
+
+.office-item >img{
+	width: 50%;
+}
+.office-item .office-item-text{
+	width: 50%;	
+    background-color: #fff;    
+	text-align: left;
+	position: relative;
+}
+.office-item-text  h3{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+.office-item-text .level{
+	margin-left: 20px;
+	font-size: 14px;
+	font-weight: 400;
+	margin-top:24px;
+}
+.office-item-text .address{
+	margin: 10px 20px 0 20px;
+	font-size: 14px;
+	font-weight: 400;
+}
+.office-item-text .price{
+	text-align: center;
+	width: 100%;
+	padding: 10px 0;
+	background-color: #f6f6fc;
+	transition: all 300ms ease-in-out;
+	position: absolute;
+	bottom: 35px;
+}
+.office-item-text .price:hover{
+	color: #fff;
+	background-color: #f7a306;
+}

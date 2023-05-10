@@ -1,0 +1,26 @@
+.hero {
+	color: white;
+	position: absolute;
+	top: 180px;
+	left: 50%;
+	transform: translateX(-50%);
+	text-align: center;
+}
+
+.hero h1 {
+	letter-spacing: 1px;
+	font-size: 50px;
+}
+
+.hero h4 {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.banner-office{
+	margin-top: 68.4px;
+	background-image: url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/banner_prd_street.jpg);
+    background-size: cover;
+    background-position: center center;
+    height: 284px;
+}

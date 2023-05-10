@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/admin/layouts/layoutCustomer.html}">
+
+<body>
+	<div layout:fragment="content">
+		<form method="POST" action="">
+			<div style="display: flex; justify-content: center;">
+				<h2>Danh Sách Khách Hàng</h2>
+			</div>
+			
+			<div  th:if="${countDeleted}" style="display: flex; justify-content: center;">
+				<a href="/admin/customer/trash" th:text="|Thùng rác(${countDeleted})|"></a>
+			</div>
+			
+			<!--<div class="mt-4 d-flex">
+				<div class="form-check ">
+					<input class="form-check-input" type="checkbox" value="" id="checkbox-all">
+					<label class="form-check-label" for="checkbox-all">Chọn tất cả</label>
+				</div>
+			</div>-->
+
+			<table class="table mt-4">
+				<thead>
+					<tr>
+						<!--<th scope="col">Chọn</th>-->
+						<!--<th scope="col">#</th>-->
+						<th scope="col">User</th>
+						<th scope="col">Password</th>
+						<th scope="col">Tên</th>
+						<th scope="col">Tuổi</th>
+						<th scope="col">Địa chỉ</th>
+						<th scope="col">Số điện thoại</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="cus :${customers}">
+						<!--<td>
+							<div class="form-check ">
+								<input class="form-check-input" type="checkbox" th:value="${cus.user}" name="ids[]">
+							</div>
+						</td>-->
+						<!--<th scope="row">{{sum @index 1}}</th>-->
+						<td th:text="${cus.user}"></td>
+						<td th:text="${cus.password}"></td>
+						<td th:text="${cus.name}"></td>
+						<td th:text="${cus.age}"></td>
+						<td th:text="${cus.address}"></td>
+						<td th:text="${cus.phone}"></td>
+						<td>
+							<!--<a href="#" class="btn btn-primary" >Sửa</a>-->
+							<a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete"
+								th:data-id="${cus.user}">Xóa</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!--<div class="d-flex">
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="action" required>
+					<option selected value="">Chọn chức năng</option>
+					<option value="delete">Xóa</option>
+				</select>
+				<button class="btn btn-primary disabled" id="submit-btn" type="submit" >Thực hiện</button>
+			</div>-->
+		</form>
+
+
+
+		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Bạn chắc chắn muốn xóa chiếc xe này?</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="btn-delete">Xóa</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form name="form-delete" method="post"></form>
+
+	</div>
+</body>
+	
+
+</html>

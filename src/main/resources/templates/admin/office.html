@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/admin/layouts/layoutOffice.html}">
+
+<body>
+	<div layout:fragment="content" style="overflow-x: auto;">
+		<form method="POST" action="/admin/office/filter">
+			<div style="display: flex; justify-content: center;">
+				<h2>Danh Sách Văn Phòng</h2>
+			</div>
+
+			<div th:if="${countDeleted}" style="display: flex; justify-content: center;">
+				<a href="/admin/office/trash" th:text="|Thùng rác(${countDeleted})|"></a>
+			</div>
+			
+			<div class="d-flex filter" >
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="status" >
+					<option selected value="">Trạng thái</option>
+					<option value="still">Còn</option>
+					<option value="hired">Đã thuê</option>
+					<option value="check">Phê duyệt</option>
+				</select>
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="level" >
+					<option selected value="">Phân khúc</option>
+					<option value="a">Hạng A</option>
+					<option value="b">Hạng B</option>
+					<option value="c">Hạng C</option>
+					<option value="d">Hạng D</option>
+				</select>
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="price" >
+					<option selected value="0">Mức giá</option>
+					<option value="10">1-10 $</option>
+					<option value="20">11-20 $</option>
+					<option value="30">21-30 $</option>
+					<option value="40">31-40 $</option>
+					<option value="50">41-50 $</option>
+					<option value="51">> 50 $</option>
+				</select>
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="area" >
+					<option selected value="0">Diện tích</option>
+					<option value="200">< 200 m2</option>
+					<option value="500">200 - 500 m2 </option>
+					<option value="1000">500 - 1000 m2</option>
+					<option value="2000">1000 - 2000 m2</option>
+					<option value="2001">> 2000 m2</option>
+				</select>
+				<button class="btn btn-success " id="submit-btn" type="submit">Lọc</button>
+			</div>
+
+			<table class="table mt-4">
+				<thead>
+					<tr>
+
+						<!--<th scope="col">#</th>-->
+						<th scope="col">Mã</th>
+						<th scope="col">Tòa nhà</th>
+						<th scope="col">Địa chỉ</th>
+						<th scope="col">Phân phúc</th>
+						<th scope="col">Diện tích</th>
+						<th scope="col">Chiều cao</th>
+						<th scope="col">Giá thuê</th>
+						<th scope="col">Giá dịch vụ</th>
+						<th scope="col">Giá đậu ô tô</th>
+						<th scope="col">Giá đậu xe máy</th>
+						<th scope="col">Trạng thái</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="office :${offices}">
+
+						<!--<th scope="row">{{sum @index 1}}</th>-->
+						<td th:text="${office.idOffice}"></td>
+						<td th:text="${office.location}"></td>
+						<td th:text="${office.address}"></td>
+						<td th:text="|Hạng ${office.level}|"></td>
+						<td th:text="${office.area}"></td>
+						<td th:text="${office.height}"></td>
+						<td th:text="${office.priceOffice}"></td>
+						<td th:text="${office.priceService}"></td>
+						<td th:text="${office.priceCar}"></td>
+						<td th:text="${office.priceMotobike}"></td>
+						<td th:switch="${office.status}">
+							<p th:case="still">Còn</p>
+							<a th:case="hired" href="#" class="btn btn-secondary">Đã thuê</a>
+							<a th:case="check" href="#" class="btn btn-info">Phê duyệt</a>
+						</td>
+						<td>
+							<a th:href="@{/admin/office/edit/{id}(id=${office.idOffice})}" class="btn btn-primary">Sửa</a>
+							<a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete"
+								th:data-id="${office.idOffice}">Xóa</a>
+						</td>
+					</tr>
+					<!--					<tr th:if="${countCustomer} == 0">
+						<td colspan="7" class="text-center">Bạn chưa đăng bán xe nào
+							<a href="/car/create">Tạo đơn bán</a>
+						</td>
+					</tr>-->
+				</tbody>
+			</table>
+
+		</form>
+		<a href="/admin/office/add" class="btn btn-primary">Thêm</a>
+
+
+		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Bạn chắc chắn muốn thực hiện hành động này?
+						</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="btn-delete">Xóa</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form name="form-delete" method="post"></form>
+
+	</div>
+</body>
+
+
+</html>

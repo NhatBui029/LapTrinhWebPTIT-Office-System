@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Register</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/register.css}" />
+
+
+</head>
+
+<body>
+	<div class="container">
+		<form class="form" method="post" action="/auth/register" th:object="${customer}">
+			<p class="title">Register </p>
+			<p class="message">Signup now and get full access to our app. </p>
+			<div th:if="${error}">
+				<span th:text="${error}" style="color: red;"></span>
+			</div>
+			<div class="flex">
+				<label>
+					<input required="" placeholder="" type="text" class="input" th:field="*{user}">
+					<span>Tài khoản</span>
+				</label>
+
+				<label>
+					<input required="" placeholder="" type="password" class="input" th:field="*{password}">
+					<span>Mật khẩu</span>
+				</label>
+			</div>
+
+			<div class="flex">
+				<label>
+					<input required="" placeholder="" type="text" class="input" th:field="*{name}">
+					<span>Họ và Tên</span>
+				</label>
+
+				<label>
+					<input required="" placeholder="" type="text" class="input" th:field="*{age}">
+					<span>Tuổi</span>
+				</label>
+			</div>
+
+			<label>
+				<input required="" placeholder="" type="text" class="input" th:field="*{phone}">
+				<span>Số Điện Thoại</span>
+			</label>
+			<label>
+				<input required="" placeholder="" type="text" class="input" th:field="*{address}">
+				<span>Địa Chỉ</span>
+			</label>
+			<button class="submit">Submit</button>
+			<p class="signin">Already have an acount ? <a href="/">Login</a> </p>
+		</form>
+	</div>
+</body>
+
+</html>

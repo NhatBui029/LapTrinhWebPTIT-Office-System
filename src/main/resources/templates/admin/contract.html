@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns=http://www.w3.org/1999/xhtml
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{/admin/layouts/layoutCustomer.html}">
+
+<body>
+	<div layout:fragment="content">
+		<form method="POST" action="">
+			<div style="display: flex; justify-content: center;">
+				<h2>Danh Sách Họp Đồng</h2>
+			</div>
+
+
+			<table class="table mt-4">
+				<thead>
+					<tr>
+						<th scope="col">Mã HĐ</th>
+						<th scope="col">Mã KH</th>
+						<th scope="col">Mã VP</th>
+						<th scope="col">Ngày kí</th>
+						<th scope="col">Ngày bắt đầu</th>
+						<th scope="col">Ngày kết thúc</th>
+						<th scope="col">Thanh toán</th>
+						<th scope="col">Điều khoản</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="contract :${contracts}">
+						<td th:text="${contract.id}"></td>
+						<td th:text="${contract.idCustomer"></td>
+						<td th:text="${contract.idOffice}"></td>
+						<td th:text="${contract.dateSign}"></td>
+						<td th:text="${contract.dateStart}"></td>
+						<td th:text="${contract.dateEnd}"></td>
+						<td th:text="${contract.payment}"></td>
+						<td th:text="${contract.term}"></td>
+						<td>
+							<!--<a href="#" class="btn btn-primary" >Sửa</a>-->
+							<a href="" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete"
+								th:data-id="${cus.user}">Xóa</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!--<div class="d-flex">
+				<select class="form-select form-select-sm" aria-label=".form-select-sm example"
+					style="width: 180px;margin-right:  16px;" name="action" required>
+					<option selected value="">Chọn chức năng</option>
+					<option value="delete">Xóa</option>
+				</select>
+				<button class="btn btn-primary disabled" id="submit-btn" type="submit" >Thực hiện</button>
+			</div>-->
+		</form>
+
+
+
+		<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog ">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Bạn chắc chắn muốn xóa chiếc xe này?</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" id="btn-delete">Xóa</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<form name="form-delete" method="post"></form>
+
+	</div>
+</body>
+	
+
+</html>

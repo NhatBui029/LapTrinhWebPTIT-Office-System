@@ -1,0 +1,34 @@
+.introduce-text{
+	flex:2;
+	margin-right: 45px;
+}
+.introduce-image{
+	flex:1;
+	background-image: url("https://timvanphong.com.vn/wp-content/uploads/2021/02/photos_about.jpg");
+	background-size: contain;
+	
+}
+.introduce-title {
+	position: relative;
+	padding-bottom: 20px;
+	font-weight: 300;
+	
+}
+
+.introduce-title:before {
+	content: "";
+	height: 2px;
+	width: 150px;
+	position: absolute;
+	bottom: 0;
+	display: block;
+	background: #f7a306;
+	color: #2d314c;
+	left: 0;
+}
+
+.introduce-description{
+	margin-top: 20px;
+	text-align: justify;
+	font-size: 17px;
+}

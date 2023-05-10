@@ -1,0 +1,59 @@
+* {
+	margin: 0;
+	box-sizing: border-box;
+	font-family: "Spartan", sans-serif;
+}
+.text-orange{
+	color:#f7a306;
+}
+.headerr {
+	padding: 0px 140px;
+}
+.introduce{
+	margin:60px 140px;
+	
+}
+
+.banner {
+	margin-top: 68.4px;
+	background-image: url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/slide2.jpg);
+	min-height: 600px;
+	background-size: cover;
+	position: relative;
+}
+
+.headerr {
+	position: fixed;
+	top: 0;
+	right: 0;
+	left: 0;
+	z-index: 1;
+	background-color: #E3E6F3;
+}
+.why{
+	background-image: url(https://timvanphong.com.vn//wp-content/themes/timvanphong/assets/images/bg_sec2_about.jpg); 
+	background-size: cover; 
+	background-position: bottom right"
+}
+.county{
+	padding: 48px 140px;
+	background-image: url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/bg-van-phong-cho-thue-theo-quan.jpg); 
+	background-position: bottom right; 
+	background-size: cover;
+}
+.partner{
+	margin: 48px 140px;
+}
+
+.content{
+	/*background-image: url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_1.jpg); 
+	background-position: bottom right; 
+	background-size: cover;*/
+	background:  url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_1.jpg) 
+	left bottom no-repeat, 
+	url(https://timvanphong.com.vn/wp-content/themes/timvanphong/assets/images/pattern-old/bg_sec2_2.jpg) 
+	right bottom no-repeat #f4f8f9;
+
+	text-align: center;
+	padding: 48px 140px;
+}

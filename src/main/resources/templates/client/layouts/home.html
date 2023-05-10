@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns=http://www.w3.org/1999/xhtml xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/login.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/header.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/home.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/footer.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/hero.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/introduce.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/why.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/county.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/partner.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/styles/client/content.css}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+
+</head>
+
+<body>
+	<div class="headerr">
+		<div th:replace="fragments/client :: header">
+
+		</div>
+	</div>
+
+	<div class="banner">
+		<div th:replace="fragments/client :: bannerHome">
+
+		</div>
+	</div>
+
+	<div class="introduce">
+		<div th:replace="fragments/client :: introduce">
+
+		</div>
+	</div>
+
+	<div class="why">
+		<div th:replace="fragments/client :: why">
+
+		</div>
+	</div>
+
+	<div layout:fragment="content" class="content">
+
+	</div>
+
+
+	<div class="county">
+		<div th:replace="fragments/client :: county">
+
+		</div>
+	</div>
+
+	<div class="partner">
+		<div th:replace="fragments/client :: partner">
+
+		</div>
+	</div>
+
+
+	<div th:replace="fragments/client :: footer">
+
+
+	</div>
+
+</body>
+
+</html>

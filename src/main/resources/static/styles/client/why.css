@@ -1,0 +1,57 @@
+.advantage-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.advantage {
+	background-color: white;
+	width: 19%;
+	padding: 24px 15px;
+	height: 260px;
+	text-align: center;
+}
+
+.advantage-text {
+	margin: 30px 0px;
+	font-size: 16px;
+	font-weight: 700;
+}
+
+.why-header {
+	color: white;
+	text-align: center;
+	position: relative;
+	padding-bottom: 24px;
+}
+
+.why-header::before {
+	content: "";
+	height: 2px;
+	width: 120px;
+	position: absolute;
+	bottom: 0;
+	display: block;
+	background: #f7a306;
+	color: #2d314c;
+	left: 50%;
+	transform: translateX(-50%);
+}
+
+.why-des {
+	margin: 24px 48px 48px;
+	color: #fff;
+	text-align: justify;
+	text-align-last: center;
+	line-height: 24px;
+}
+.why-slogan{
+	text-align: center;
+	margin-top: 40px;
+}
+.why-solgan-text{
+	margin: 16px 48px;
+	padding: 0px 48px;
+	color: #fff;
+	text-align: center;
+	line-height: 24px;
+}

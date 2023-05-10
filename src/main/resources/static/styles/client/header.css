@@ -1,0 +1,38 @@
+* {
+	box-sizing: border-box;
+	margin:0px;
+}
+
+#menu {
+	width: 100%;
+	font-family: Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 550;
+	display: flex;
+	justify-content: space-between;
+}
+
+#menu ul {
+	display: flex;
+	justify-content: left;
+}
+#menu ul li{
+	padding: 25px 25px;
+	list-style: none;
+	
+}
+
+li a:hover{
+	color: #088178;
+}
+a{
+	text-decoration: none;
+	color: black;
+}
+
+#menu img{
+	width: 150px;
+	margin-right: 25px;
+}
+
+
