@@ -34,16 +34,30 @@ public class AdminContractController {
 	private IOfficeService iOffSer;
 	@Autowired
 	private ICustomerService iCusSer;
-	@Autowired 
+	@Autowired
 	IContractService iCtrSer;
 
 	@GetMapping("")
-	public String homeOffice(Model model) {
-		System.out.println(iCtrSer.getAllContract());
-		model.addAttribute("contracts",iCtrSer.getAllContract());
-		return "admin/contract";
-	}
+	public String homeOffice(Model model,HttpServletRequest request) {
+		String idCus = "";
+		Cookie[] cookies = request.getCookies();
 
-	
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("setUser")) {
+					idCus = cookie.getValue();
+					break;
+				}
+			}
+		}
+		if (idCus.compareTo("") != 0) {
+			System.out.println(iCtrSer.getAllContract());
+			model.addAttribute("contracts", iCtrSer.getAllContract());
+			return "admin/contract";
+		} else {
+			model.addAttribute("error", "Bạn chưa đăng nhập !");
+			return "authentication/error";
+		}
+	}
 
 }

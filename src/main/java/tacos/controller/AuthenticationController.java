@@ -71,6 +71,20 @@ public class AuthenticationController {
 		return "redirect:/client/home";
 	}
 	
+	@GetMapping("/logout")
+	public String logout(Model model,HttpServletResponse response) {
+		 ResponseCookie resCookie = ResponseCookie.from("setUser", "")
+		            .httpOnly(true)
+		            .sameSite("None")
+		            .secure(true)
+		            .path("/")
+		            .maxAge(0)
+		            .build();
+		    response.addHeader("Set-Cookie", resCookie.toString());
+		    model.addAttribute("admin", new Admin());
+		return "authentication/login";
+	}
+	
 	@GetMapping("/register")
 	public String getRegister(Model model) {
 		model.addAttribute("customer", new Customer());

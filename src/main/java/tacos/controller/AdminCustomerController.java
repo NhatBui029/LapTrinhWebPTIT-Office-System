@@ -33,10 +33,27 @@ public class AdminCustomerController {
 	private ICustomerService iCusSer;
 
 	@GetMapping("")
-	public String home(Model model) {
-		model.addAttribute("countDeleted", iCusSer.getAllCustomerDeleted().size());
-		model.addAttribute("customers", iCusSer.getAllCustomer());
-		return "admin/customer";
+	public String home(Model model,HttpServletRequest request) {
+		String idCus="";
+		Cookie[] cookies = request.getCookies();
+
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (cookie.getName().equals("setUser")) {
+                    idCus = cookie.getValue();
+                    break;
+                }
+            }
+        }
+        if(idCus.compareTo("")!=0) {
+        	model.addAttribute("countDeleted", iCusSer.getAllCustomerDeleted().size());
+    		model.addAttribute("customers", iCusSer.getAllCustomer());
+    		return "admin/customer";
+        }
+        else {
+        	model.addAttribute("error", "Bạn chưa đăng nhập !");
+        	return "authentication/error";
+        }
 	}
 
 	@GetMapping("/trash")

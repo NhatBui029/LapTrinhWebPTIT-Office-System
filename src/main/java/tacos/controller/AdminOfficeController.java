@@ -1,5 +1,6 @@
 
 package tacos.controller;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,18 +39,36 @@ public class AdminOfficeController {
 	private IOfficeService iOffSer;
 //	@Autowired
 //	private ICustomerService iCusSer;
-	
+
 	@Autowired
 	private IDanhSachService iDSSer;
-	
+
 	@Autowired
 	private IContractService iCtrSer;
 
 	@GetMapping("")
 	public String homeOffice(Model model, HttpServletRequest request, HttpServletResponse response) {
-		model.addAttribute("countDeleted", iOffSer.getAllOfficeDeleted().size());
-		model.addAttribute("offices", iOffSer.getAllOffice());
-		return "admin/office";
+		String idCus = "";
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("setUser")) {
+					idCus = cookie.getValue();
+					break;
+				}
+			}
+		}
+		if (idCus.compareTo("") != 0) {
+
+			model.addAttribute("countDeleted", iOffSer.getAllOfficeDeleted().size());
+			model.addAttribute("offices", iOffSer.getAllOffice());
+			return "admin/office";
+		} else {
+			model.addAttribute("error", "Bạn chưa đăng nhập !");
+			return "authentication/error";
+		}
+
 	}
 
 	@GetMapping("/trash")
@@ -188,32 +207,32 @@ public class AdminOfficeController {
 		model.addAttribute("offices", filter);
 		return "admin/office";
 	}
-	
+
 	@GetMapping("/check/{id}")
-	public String getCheck(@PathVariable String id,Model model) {
+	public String getCheck(@PathVariable String id, Model model) {
 		List<Contract> contracts = new ArrayList();
 		System.out.println(iDSSer.getDanhSachByOffice(id));
 		String[] list = iDSSer.getDanhSachByOffice(id).getList().split("\\|");
-		for(String i :list) {
+		for (String i : list) {
 			String[] a = i.split("\\/");
-			Contract contract = new Contract(a[0],a[1],a[2],Integer.parseInt(a[3]),a[4],a[5],a[6],a[7],a[8]);
+			Contract contract = new Contract(a[0], a[1], a[2], Integer.parseInt(a[3]), a[4], a[5], a[6], a[7], a[8]);
 			contracts.add(contract);
 		}
 		model.addAttribute("contracts", contracts);
 		return "admin/checkOffice";
 	}
-	
+
 	@GetMapping("/check/confirm/{id}")
-	public String Check(@PathVariable String id,Model model) {
+	public String Check(@PathVariable String id, Model model) {
 		String[] ma = id.split("-");
-		DanhSach ctr = iDSSer.getDanhSachByOffice(ma[0]);		
+		DanhSach ctr = iDSSer.getDanhSachByOffice(ma[0]);
 		String[] list = ctr.getList().split("\\|");
 
-		for(String i :list) {
+		for (String i : list) {
 			String[] a = i.split("\\/");
 			Office off = iOffSer.getOfficeById(a[1]);
-			Contract contract = new Contract(a[0],a[1],a[2],Integer.parseInt(a[3]),a[4],a[5],a[6],a[7],a[8]);
-			if(a[0].compareTo(id)==0) {
+			Contract contract = new Contract(a[0], a[1], a[2], Integer.parseInt(a[3]), a[4], a[5], a[6], a[7], a[8]);
+			if (a[0].compareTo(id) == 0) {
 				iCtrSer.saveContract(contract);
 //				iDSSer.deleteDanhSachByOffice("m11");
 				off.setStatus("hired");
@@ -221,7 +240,7 @@ public class AdminOfficeController {
 				break;
 			}
 		}
-		
+
 		return "redirect:/admin/contract";
 	}
 
