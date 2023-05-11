@@ -1,2 +1,2 @@
 Link báo cáo
-https://docs.google.com/document/d/1YS_GS6KD-z3A8zs25Mi0-nmXD6xSjYKrr15CByWkLqc/edit
+https://docs.google.com/document/d/1yrETO5fVUq7r5l77Rcpq0wVMChjXquPg/edit?usp=share_link&ouid=112894042961967121904&rtpof=true&sd=true
