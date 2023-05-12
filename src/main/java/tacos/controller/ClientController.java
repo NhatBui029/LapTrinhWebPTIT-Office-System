@@ -38,23 +38,49 @@ public class ClientController {
 
 	@GetMapping("/home")
 	public String home(Model model, HttpServletRequest request) {
-		List<Office> list = iOffSer.getAllOfficeClient().subList(0, 6);
-		model.addAttribute("offices", list);
-
+		String idCus = "";
 		Cookie[] cookies = request.getCookies();
+
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
-				System.out.println(cookie.getValue());
+				if (cookie.getName().equals("setUser")) {
+					idCus = cookie.getValue();
+					break;
+				}
 			}
 		}
-
-		return "client/home";
+		if (idCus.compareTo("") != 0) {
+			List<Office> list = iOffSer.getAllOfficeClient().subList(0, 6);
+			model.addAttribute("offices", list);
+			return "client/home";
+		} else {
+			model.addAttribute("error", "Bạn chưa đăng nhập !");
+			return "authentication/error";
+		}
+		
 	}
 
 	@GetMapping("/office")
-	public String viewOffice(Model model,HttpServletResponse response) {
-		model.addAttribute("offices", iOffSer.getAllOfficeClient());
-		return "client/office";
+	public String viewOffice(Model model,HttpServletResponse response,HttpServletRequest request) {
+		String idCus = "";
+		Cookie[] cookies = request.getCookies();
+
+		if (cookies != null) {
+			for (Cookie cookie : cookies) {
+				if (cookie.getName().equals("setUser")) {
+					idCus = cookie.getValue();
+					break;
+				}
+			}
+		}
+		if (idCus.compareTo("") != 0) {
+			model.addAttribute("offices", iOffSer.getAllOfficeClient());
+			return "client/office";
+		} else {
+			model.addAttribute("error", "Bạn chưa đăng nhập !");
+			return "authentication/error";
+		}
+		
 	}
 
 	@PostMapping("/search")

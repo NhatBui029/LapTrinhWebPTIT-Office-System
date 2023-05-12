@@ -4,9 +4,9 @@
 
 <body>
 	<div layout:fragment="content" class="content-office">
-		<div class="filter">
-			<h1>TÌM VĂN PHÒNG</h1>
-			<form class="form-group" action="/client/filter" method="post">
+		<div class="filter" style="">
+			<h1 style="position: sticky;top: 70px;">TÌM VĂN PHÒNG</h1>
+			<form class="form-group" action="/client/filter" method="post" style="position: sticky;top: 114px;">
 				<select name="level" class="select">
 					<option value="">Phân khúc</option>
 					<option value="a">Hạng A</option>
@@ -39,7 +39,7 @@
 		</div>
 
 		<div class="main">
-			<form method="post" action="/client/search">
+			<form method="post" action="/client/search" class="search-sticky">
 				<input type="text" placeholder="Search buildings, streets or address" name="input">
 				<button class="normal" type="submit">Tìm kiếm</button>
 			</form>
