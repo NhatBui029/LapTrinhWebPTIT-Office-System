@@ -13,7 +13,7 @@
 						<tr>
 							<th scope="col">Mã VP</th>
 							<th scope="col">Mã KH</th>
-							<th scope="col">Tiền cọc</th>
+							<th scope="col">Tiền thuê</th>
 							<th scope="col">Ngày kí</th>
 							<th scope="col">Ngày bắt đầu</th>
 							<th scope="col">Ngày kết thúc</th>
@@ -25,7 +25,7 @@
 						<tr th:each="contract :${contracts}">
 							<td th:text="${contract.idOffice}"></td>
 							<td th:text="${contract.idCustomer}"></td>
-							<td th:text="${contract.deposits}"></td>
+							<td th:text="|${contract.deposits}($)|"></td>
 							<td th:text="${contract.dateSign }"></td>
 							<td th:text="${contract.dateStart}"></td>
 							<td th:text="${contract.dateEnd}"></td>

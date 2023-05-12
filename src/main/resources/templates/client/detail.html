@@ -78,6 +78,9 @@
 		<div th:if="${require}" class="require">
 			<h1>Thông tin hợp đồng</h1>
 			<form method="post" th:action="@{/client/require/{id}(id=${office.idOffice})}">
+				<div th:if="${error}">
+					<p th:text="${error}" style="color: red;"></p>
+				</div>
 				<label for="name">Tiền cọc:</label>
 				<input type="text" id="name" name="deposits" required placeholder="($)">
 

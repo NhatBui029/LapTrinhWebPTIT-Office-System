@@ -134,49 +134,60 @@ public class ClientController {
 	@PostMapping("/require/{id}")
 	public String require(@PathVariable String id,Model model,HttpServletRequest request,HttpServletResponse response) {
 		String  payment = request.getParameter("payment");
-		int deposits = Integer.parseInt(request.getParameter("deposits"));
 		String dateStart = request.getParameter("start-date");
 		String dateEnd = request.getParameter("end-date");
-		String idCus="";
-		Cookie[] cookies = request.getCookies();
-
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("setUser")) {
-                    idCus = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        
-        String idContract = id+"-"+idCus;
-        
-        LocalDate currentDate = LocalDate.now();
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-		String dateSign = currentDate.format(formatter);
-
-		String term = "Điều khoản";
-		
-		Contract ctr = new Contract(idContract, id, idCus, deposits, dateSign, dateStart, dateEnd, payment, term);
-		String check = ctr.toCheck();
-		
+		int deposits = Integer.parseInt(request.getParameter("deposits"));
 		Office off = iOffSer.getOfficeById(id);
-		off.setStatus("check");
-		iOffSer.saveOffice(off);
-		
-		DanhSach require = iDSSer.getDanhSachByOffice(id);
-		if(require == null) {
-			DanhSach ds = new DanhSach(id,check);
-			iDSSer.saveDanhSach(ds);
-		}else {
-			String input = require.getList()+"|"+check;
-			DanhSach ds = new DanhSach(id,input);
-			iDSSer.saveDanhSach(ds);
+		if(deposits>=off.getPriceOfficeMin() && deposits<=off.getPriceOfficeMax()) {
+			String idCus="";
+			Cookie[] cookies = request.getCookies();
+
+	        if (cookies != null) {
+	            for (Cookie cookie : cookies) {
+	                if (cookie.getName().equals("setUser")) {
+	                    idCus = cookie.getValue();
+	                    break;
+	                }
+	            }
+	        }
+	        
+	        String idContract = id+"-"+idCus;
+	        
+	        LocalDate currentDate = LocalDate.now();
+
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+			String dateSign = currentDate.format(formatter);
+
+			String term = "Điều khoản";
+			
+			Contract ctr = new Contract(idContract, id, idCus, deposits, dateSign, dateStart, dateEnd, payment, term);
+			String check = ctr.toCheck();
+			
+			
+			off.setStatus("check");
+			iOffSer.saveOffice(off);
+			
+			DanhSach require = iDSSer.getDanhSachByOffice(id);
+			if(require == null) {
+				DanhSach ds = new DanhSach(id,check);
+				iDSSer.saveDanhSach(ds);
+			}else {
+				String input = require.getList()+"|"+check;
+				DanhSach ds = new DanhSach(id,input);
+				iDSSer.saveDanhSach(ds);
+			}
+			
+			model.addAttribute("office", iOffSer.getOfficeById(id));
+			return "client/detail";
+		}
+		else {
+			model.addAttribute("error", "Nhập giá thuê trong khoảng yêu cầu !");
+			model.addAttribute("require", "require");
+			model.addAttribute("office", iOffSer.getOfficeById(id));
+			return "client/detail";
 		}
 		
-		model.addAttribute("office", iOffSer.getOfficeById(id));
-		return "client/detail";
+		
 		
 	}
 }
